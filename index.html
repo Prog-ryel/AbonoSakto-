@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f5f8f2">
+    <meta
+      name="description"
+      content="AbonoSakto account verification setup page."
+    >
+    <title>Account protection | AbonoSakto</title>
+    <style>
+      :root {
+        color-scheme: light;
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", sans-serif;
+        color: #183728;
+        background: #f5f8f2;
+        font-synthesis: none;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        min-width: 320px;
+        min-height: 100vh;
+        margin: 0;
+        background:
+          radial-gradient(ellipse at 82% 8%, #e0eed8 0, transparent 30rem),
+          #f5f8f2;
+      }
+
+      .page {
+        display: flex;
+        min-height: 100vh;
+        flex-direction: column;
+      }
+
+      .topbar,
+      .footer {
+        width: min(100% - 40px, 1080px);
+        margin-inline: auto;
+      }
+
+      .topbar {
+        display: flex;
+        min-height: 88px;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 11px;
+        color: inherit;
+        font-size: 1.05rem;
+        font-weight: 800;
+        letter-spacing: -0.035em;
+        text-decoration: none;
+      }
+
+      .brand-mark {
+        display: grid;
+        width: 42px;
+        height: 42px;
+        place-items: center;
+        border-radius: 14px;
+        background: #1d7147;
+        box-shadow: 0 7px 16px #1d714733;
+      }
+
+      .brand-mark svg {
+        width: 25px;
+        height: 25px;
+      }
+
+      .top-note {
+        color: #637568;
+        font-size: 0.84rem;
+        font-weight: 600;
+      }
+
+      main {
+        display: grid;
+        flex: 1;
+        place-items: center;
+        padding: 46px 20px 70px;
+      }
+
+      .card {
+        width: min(100%, 680px);
+        overflow: hidden;
+        border: 1px solid #e1e9de;
+        border-radius: 28px;
+        background: #fff;
+        box-shadow: 0 24px 70px #24432b12;
+      }
+
+      .card-top {
+        position: relative;
+        overflow: hidden;
+        padding: clamp(30px, 7vw, 58px);
+        background:
+          radial-gradient(circle at 91% 13%, #c3e3a9 0 5px, transparent 6px),
+          radial-gradient(circle at 85% 22%, #a9d18c 0 3px, transparent 4px),
+          linear-gradient(135deg, #f1f8eb, #e6f2df);
+      }
+
+      .card-top::after {
+        position: absolute;
+        right: -78px;
+        bottom: -180px;
+        width: 330px;
+        height: 330px;
+        border: 1px solid #7bb36b33;
+        border-radius: 50%;
+        content: "";
+        box-shadow: 0 0 0 25px #7bb36b0d, 0 0 0 55px #7bb36b0a;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin: 0 0 20px;
+        color: #28734a;
+        font-size: 0.75rem;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .eyebrow-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #58a767;
+        box-shadow: 0 0 0 4px #58a76720;
+      }
+
+      h1 {
+        position: relative;
+        z-index: 1;
+        max-width: 480px;
+        margin: 0;
+        color: #163d2b;
+        font-size: clamp(2.1rem, 6vw, 3.35rem);
+        font-weight: 800;
+        letter-spacing: -0.065em;
+        line-height: 1.06;
+      }
+
+      .intro {
+        position: relative;
+        z-index: 1;
+        max-width: 470px;
+        margin: 18px 0 0;
+        color: #50675a;
+        font-size: 1rem;
+        line-height: 1.7;
+      }
+
+      .card-content {
+        padding: clamp(26px, 6vw, 42px) clamp(24px, 7vw, 58px) 38px;
+      }
+
+      .status {
+        display: flex;
+        align-items: flex-start;
+        gap: 15px;
+        padding: 19px;
+        border: 1px solid #f1dfaa;
+        border-radius: 18px;
+        background: #fffaf0;
+      }
+
+      .status-icon {
+        display: grid;
+        width: 38px;
+        height: 38px;
+        flex: 0 0 38px;
+        place-items: center;
+        border-radius: 12px;
+        background: #f7e9be;
+        color: #815d13;
+      }
+
+      .status-icon svg {
+        width: 20px;
+        height: 20px;
+      }
+
+      .status h2 {
+        margin: 1px 0 5px;
+        color: #674b11;
+        font-size: 0.95rem;
+        font-weight: 750;
+      }
+
+      .status p {
+        margin: 0;
+        color: #776a4b;
+        font-size: 0.88rem;
+        line-height: 1.55;
+      }
+
+      .steps {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+        margin-top: 25px;
+      }
+
+      .step {
+        min-height: 104px;
+        padding: 15px;
+        border: 1px solid #e9eee6;
+        border-radius: 16px;
+        background: #fbfcfa;
+      }
+
+      .step-number {
+        display: block;
+        margin-bottom: 8px;
+        color: #378153;
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+      }
+
+      .step span:last-child {
+        color: #4c6052;
+        font-size: 0.84rem;
+        font-weight: 650;
+        line-height: 1.4;
+      }
+
+      .privacy-note {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin: 23px 0 0;
+        color: #718075;
+        font-size: 0.78rem;
+        line-height: 1.5;
+      }
+
+      .privacy-note svg {
+        width: 16px;
+        height: 16px;
+        flex: 0 0 16px;
+        color: #568866;
+      }
+
+      .footer {
+        display: flex;
+        min-height: 72px;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        color: #758378;
+        font-size: 0.78rem;
+      }
+
+      .footer strong {
+        color: #526457;
+        font-weight: 700;
+      }
+
+      @media (max-width: 560px) {
+        .topbar,
+        .footer {
+          width: min(100% - 32px, 1080px);
+        }
+
+        .topbar {
+          min-height: 72px;
+        }
+
+        .top-note {
+          font-size: 0.72rem;
+        }
+
+        main {
+          padding: 26px 16px 38px;
+        }
+
+        .card {
+          border-radius: 22px;
+        }
+
+        .steps {
+          grid-template-columns: 1fr;
+        }
+
+        .step {
+          display: flex;
+          min-height: auto;
+          align-items: center;
+          gap: 12px;
+        }
+
+        .step-number {
+          width: 32px;
+          height: 32px;
+          display: grid;
+          flex: 0 0 32px;
+          margin: 0;
+          place-items: center;
+          border-radius: 10px;
+          background: #edf5e9;
+        }
+
+        .footer {
+          justify-content: center;
+          text-align: center;
+        }
+      }
+
+      @media (prefers-reduced-motion: no-preference) {
+        .card {
+          animation: arrive 480ms ease-out both;
+        }
+
+        @keyframes arrive {
+          from {
+            opacity: 0;
+            transform: translateY(10px);
+          }
+
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header class="topbar">
+        <a class="brand" href="#" aria-label="AbonoSakto home">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path
+                d="M19.5 4.5c-7.2.2-12 2.4-12 7.5 0 2.1 1.5 3.7 3.6 3.7 4.5 0 7.9-4.9 8.4-11.2Z"
+                stroke="#fff"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.7"
+              />
+              <path
+                d="M4.5 20c2.5-4.1 5.2-6.7 9.6-9.2"
+                stroke="#d7f0c4"
+                stroke-linecap="round"
+                stroke-width="1.7"
+              />
+            </svg>
+          </span>
+          <span>AbonoSakto</span>
+        </a>
+        <span class="top-note">Account protection</span>
+      </header>
+
+      <main>
+        <section class="card" aria-labelledby="page-title">
+          <div class="card-top">
+            <p class="eyebrow"><span class="eyebrow-dot"></span> A safer sign-in</p>
+            <h1 id="page-title">Keeping your account safe, one step at a time.</h1>
+            <p class="intro">
+              We’re preparing an extra security check to help protect AbonoSakto
+              accounts from automated sign-in attempts.
+            </p>
+          </div>
+
+          <div class="card-content">
+            <div class="status" role="status">
+              <span class="status-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M12 8v4m0 4h.01M10.3 3.9 2.8 17a2 2 0 0 0 1.7 3h15a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="1.7"
+                  />
+                </svg>
+              </span>
+              <div>
+                <h2>Setup in progress</h2>
+                <p>
+                  This is a setup page only. It does not show or verify a CAPTCHA
+                  yet; the security widget will be added after configuration.
+                </p>
+              </div>
+            </div>
+
+            <div class="steps" aria-label="Setup progress">
+              <div class="step">
+                <span class="step-number">STEP 01</span>
+                <span>Host this page securely</span>
+              </div>
+              <div class="step">
+                <span class="step-number">STEP 02</span>
+                <span>Configure Turnstile</span>
+              </div>
+              <div class="step">
+                <span class="step-number">STEP 03</span>
+                <span>Connect it to sign-in</span>
+              </div>
+            </div>
+
+            <p class="privacy-note">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path
+                  d="M12 3 19 6v5c0 4.5-2.9 8.1-7 10-4.1-1.9-7-5.5-7-10V6l7-3Z"
+                  stroke="currentColor"
+                  stroke-linejoin="round"
+                  stroke-width="1.6"
+                />
+                <path
+                  d="m9 12 2 2 4-4"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.6"
+                />
+              </svg>
+              Your password and account details are not requested on this page.
+            </p>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <span><strong>AbonoSakto</strong> · Tools for smarter farming</span>
+      </footer>
+    </div>
+  </body>
+</html>
